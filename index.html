@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redrob Equilibrium Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0c0c0e;
+            color: #f5f5f5;
+            font-family: 'Urbanist', sans-serif;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .slide {
+            background-color: #000000;
+            width: 100%;
+            max-width: 1100px;
+            height: 620px;
+            border-radius: 16px;
+            border: 1px solid #222;
+            padding: 50px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* Subtle modern tech grid background accent */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(222, 255, 154, 0.02) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(222, 255, 154, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .slide-header {
+            border-left: 5px solid #deff9a;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .slide-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #deff9a;
+        }
+
+        .slide-body {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Layout Types */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+        }
+
+        .split-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .card {
+            background: #0b0b0d;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #deff9a;
+        }
+
+        .card i {
+            font-size: 40px;
+            color: #deff9a;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #a0a0aa;
+            line-height: 1.5;
+        }
+
+        /* Title Slide Layout */
+        .title-layout {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .title-layout h1 {
+            font-size: 64px;
+            color: #deff9a;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .title-layout p {
+            font-size: 22px;
+            color: #a0a0aa;
+            max-width: 700px;
+        }
+
+        /* Formula Specifics */
+        .formula-box {
+            background: #09090b;
+            border: 1px solid #deff9a;
+            padding: 35px;
+            border-radius: 14px;
+            width: 100%;
+            text-align: center;
+            font-size: 28px;
+            color: #deff9a;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 0 20px rgba(222, 255, 154, 0.05);
+        }
+
+        /* Table Design */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #deff9a;
+            color: #000;
+            padding: 14px;
+            font-size: 18px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #222;
+            font-size: 16px;
+            color: #e4e4e7;
+        }
+
+        tr:hover td {
+            color: #deff9a;
+        }
+
+        .code-callout {
+            font-family: 'JetBrains Mono', monospace;
+            background: #09090b;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border-left: 4px solid #deff9a;
+            font-size: 16px;
+            color: #e4e4e7;
+            width: 100%;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #222;
+            padding-top: 15px;
+            font-size: 14px;
+            color: #52525b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+        <div></div>
+        <div class="slide-body">
+            <div class="title-layout">
+                <h1>REDROB EQUILIBRIUM</h1>
+                <p>Dynamic Behavioral Weighting & High-Velocity Sourcing Engine</p>
+                <span style="margin-top: 30px; font-family: 'JetBrains Mono', monospace; color: #deff9a; font-size: 14px; border: 1px solid #deff9a; padding: 6px 16px; border-radius: 20px;">Redrob AI "India Runs" Hackathon Submission</span>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Workspace Overview</span>
+            <span>Slide 1</span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2>The Sourcing Bottleneck</h2>
+        </div>
+        <div class="slide-body">
+            <div class="split-2">
+                <div>
+                    <p style="font-size: 24px; line-height: 1.6; color: #e4e4e7;">
+                        Traditional hiring pipelines rely on <strong style="color: #deff9a;">static keyword parsing</strong> which fails to grasp deep technical context. 
+                    </p>
+                    <p style="font-size: 20px; line-height: 1.6; color: #a0a0aa; margin-top: 20px;">
+                        Worse, recruiters lack real-time visibility into whether an elite candidate is active, leading to massive <strong style="color: #ef4444;">ghosting rates</strong> and hundreds of wasted evaluation hours.
+                    </p>
+                </div>
+                <div class="card" style="padding: 40px; border-color: #333;">
+                    <i class="fa-solid fa-user-slash" style="color: #ef4444;"></i>
+                    <h3 style="color: #ef4444;">The Ghosting Paradox</h3>
+                    <p>A candidate with a 100% perfect resume text match yields 0% business value if they are entirely inactive or unresponsive on the platform.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Problem Definition</span>
+            <span>Slide 2</span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2>Core Architectural Solutions</h2>
+        </div>
+        <div class="slide-body">
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>Sub-Second Engine</h3>
+                    <p>Utilizes deep-learning transformers to vectorize unstructured files and profiles instantly.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h3>Hybrid Matrix</h3>
+                    <p>Allows real-time balancing between structural profile alignment and active platform signals.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>Tiered Optimization</h3>
+                    <p>Decouples heavy asynchronous token loading from the UI runtime layer to slash latency.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Product Mechanics</span>
+            <span>Slide 3</span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2>Deterministic Consensus Math</h2>
+        </div>
+        <div class="slide-body" style="flex-direction: column; gap: 30px;">
+            <div class="formula-box">
+                Final Score = (Semantic Fit × W_semantic / 100) + (Behavioral Signals × (100 - W_semantic) / 100)
+            </div>
+            <div class="grid-3" style="margin-top: 10px;">
+                <div style="text-align: center;">
+                    <h4 style="color:#fff; font-size:18px; margin-bottom:5px;">Resume Match</h4>
+                    <p style="color:#a0a0aa; font-size:14px;">Contextual Cosine Similarity via SentenceTransformers</p>
+                </div>
+                <div style="text-align: center;">
+                    <h4 style="color:#fff; font-size:18px; margin-bottom:5px;">Platform Activity</h4>
+                    <p style="color:#a0a0aa; font-size:14px;">Real-world response metrics & interaction states</p>
+                </div>
+                <div style="text-align: center;">
+                    <h4 style="color:#fff; font-size:18px; margin-bottom:

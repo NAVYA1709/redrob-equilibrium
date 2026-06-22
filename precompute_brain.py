@@ -81,7 +81,17 @@ def run_precomputation():
                     "Candidate ID": candidate.get("candidate_id", "UNKNOWN"),
                     "Name": profile.get("anonymized_name", "Anonymous Candidate"),
                     "Current Title": profile.get("current_title", "N/A"),
-                    "precomputed_signal_rating": calculate_custom_signals_score(signals)
+                    "precomputed_signal_rating": calculate_custom_signals_score(signals),
+                    "Headline": profile.get("headline", ""),
+                    "Summary": profile.get("summary", ""),
+                    "Location": f"{profile.get('location', '')}, {profile.get('country', '')}".strip(", "),
+                    "Experience": float(profile.get("years_of_experience", 0.0)),
+                    "Skills": skills_list[:12],
+                    "Github Activity": float(signals.get("github_activity_score", 5.0)),
+                    "Interview Completion": float(signals.get("interview_completion_rate", 0.5)),
+                    "Offer Acceptance": float(signals.get("offer_acceptance_rate", 0.5)),
+                    "Response Time": float(signals.get("avg_response_time_hours", 72.0)),
+                    "Profile Completeness": int(signals.get("profile_completeness_score", 100))
                 })
                 text_corpus_batch.append(candidate_corpus)
             except Exception:

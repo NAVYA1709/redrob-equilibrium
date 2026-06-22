@@ -3,5 +3,3 @@ pandas
 altair
 numpy
 sentence-transformers
-python-pptx
-python-docx

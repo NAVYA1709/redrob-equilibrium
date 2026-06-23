@@ -68,5 +68,19 @@ This command runs in less than 5 minutes on CPU. It does the following:
 ### 3. Submission Validation
 Verify that the output format adheres strictly to the hackathon specifications:
 ```bash
-python data/validate_submission.py data/submission.csv
+python data/validate_submission.py ./submission.csv
 ```
+
+### 4. Running the Streamlit Sandbox Locally
+To run the interactive glassmorphic web dashboard on your local machine:
+```bash
+streamlit run app.py
+```
+*This will open the web app in your browser, enabling live, interactive slider weight modifications, keyword search filtering, geographic analytics, and automated outreach simulation.*
+
+### 5. Rebuilding Candidate Embeddings Index (Optional)
+If the primary candidate dataset (`data/candidates.jsonl`) is ever modified, you can rebuild the precomputed embeddings index by running:
+```bash
+python precompute_brain.py
+```
+*This filters the raw candidate pool, computes the sentence embeddings on your CPU, and refreshes `data/candidate_embeddings.pkl` to keep the Streamlit app's response times under 10 milliseconds.*

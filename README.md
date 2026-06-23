@@ -47,5 +47,26 @@ Follow these steps to initialize the environment and run the ranking engine proc
 ### 1. Prerequisites & Installation
 Ensure you have Python 3.8+ installed, then clone the repository and install the backend mathematical packages:
 ```bash
-# Install core deep learning and tensor processing tools
-pip install torch sentence-transformers numpy
+# Install core deep learning, pandas and tensor processing tools
+pip install torch sentence-transformers numpy pandas python-docx
+```
+
+### 2. Execution Command for Submission Reproduction
+To reproduce the top-100 candidates ranking submission file from the candidate pool:
+```bash
+python rank.py --candidates ./data/candidates.jsonl --out ./submission.csv
+```
+This command runs in less than 5 minutes on CPU. It does the following:
+* Parses the Job Description from `data/job_description.docx` (falling back to baseline if unavailable).
+* Performs strict pre-filtering to remove honeypots (impossibilities like `last_active_date < signup_date`, skill durations > YOE, or expert skills with 0 duration), unqualified titles, and 100% consulting backgrounds.
+* Computes dense embeddings using `SentenceTransformer('all-MiniLM-L6-v2')` for the filtered candidate corpora.
+* Scores candidates using the hybrid mathematical consensus blend combined with heuristic target bonuses (YOE 5-9, target skills like vector databases/embeddings/evaluation/MLOps, Pune/Noida locations, and short notice periods).
+* Breaks score ties deterministically using `candidate_id` ascending.
+* Generates a unique, natural-language reasoning string for each of the top 100 candidates.
+* Outputs the final 100 rows into the specified output path (columns: `candidate_id`, `rank`, `score`, `reasoning`).
+
+### 3. Submission Validation
+Verify that the output format adheres strictly to the hackathon specifications:
+```bash
+python data/validate_submission.py data/submission.csv
+```

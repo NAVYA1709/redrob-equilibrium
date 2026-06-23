@@ -1,0 +1,86 @@
+# Redrob Hackathon — Submission Metadata
+#
+# Copied and filled based on data/submission_metadata_template.yaml
+# Make sure to update the email, phone, and github_repo if needed!
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Flux"  # Used in leaderboard and announcements
+
+primary_contact:
+  name: "Navyasri Kothuri"
+  email: "navyasrikothuri@gmail.com"   # Update with your registered email
+  phone: "+91-9849827839"              # Update with your contact number
+
+team_members:
+  - name: "Navyasri Kothuri"
+    email: "navyasrikothuri@gmail.com"
+    role: "Student"
+  - name: "Mohamed Ibrahim A"
+    email: "2005mohamedibrahim@gmail.com"
+    role: "Student"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/NAVYA1709/redrob-equilibrium"
+# Must be updated with your actual GitHub repository URL
+
+sandbox_link: "https://navya1709-redrob-equilibrium-app-9huxdo.streamlit.app/"
+# Update with your actual Streamlit/HuggingFace sandbox URL if applicable
+
+reproduce_command: "python rank.py --candidates ./data/candidates.jsonl --out ./submission.csv"
+# The single command that produces submission.csv from candidates.jsonl.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows PC"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.13.2"
+  os: "Windows 11"
+  uses_gpu_for_inference: false                 # Must be false
+  has_network_during_ranking: false             # Must be false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Gemini"
+  - "Other"
+
+ai_usage_summary: |
+  Used Gemini-based AI assistant (Antigravity) for data inspection, 
+  implementation of ranker filtering logic, heuristic matching criteria, 
+  unique reasoning generation, and verification tests.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  A hybrid dense retriever and rule-based heuristic scoring engine. We pre-filter 
+  the 100K candidate pool using target title keywords, experience ranges (3-15 YOE), 
+  and platform completeness. We explicitly detect and filter out all honeypots 
+  (impossibilities like last active date before signup date, or skill durations 
+  exceeding total experience) and consulting-only careers. The remaining pool is 
+  encoded using SentenceTransformers (all-MiniLM-L6-v2) for semantic matching with 
+  the JD. We apply heuristic adjustments for experience range (5-9 YOE), target 
+  skills (vector DBs, embeddings, evaluation, MLOps), locations, notice periods, 
+  and platform activity. Tie-breaking is handled deterministically via candidate_id 
+  ascending. Unique, natural-language reasoning is dynamically generated for each 
+  of the top 100 candidates.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        # I have read submission_spec.md in full
+  code_is_original_work: true       # My code is my team's original work
+  no_collusion: true                # I have not coordinated my submission with other teams
+  honeypot_check_done: true         # Set true as we explicitly checked for honeypots
+  reproduction_tested: true         # Tested that reproduce_command runs end-to-end

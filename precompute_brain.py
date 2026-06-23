@@ -3,7 +3,7 @@ import os
 import pickle
 from sentence_transformers import SentenceTransformer
 
-print("🔄 Loading Local AI Model...")
+print("Loading Local AI Model...")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def calculate_custom_signals_score(signals):
@@ -57,7 +57,7 @@ def run_precomputation():
     text_corpus_batch = []
     tech_keywords = ["engineer", "developer", "data", "backend", "programmer", "software"]
     
-    print("📥 Ingesting and filtering candidate pool...")
+    print("Ingesting and filtering candidate pool...")
     with open(candidates_path, 'r', encoding='utf-8', errors='ignore') as f:
         for line in f:
             cleaned_line = line.strip().strip("'").strip('"').replace('\\n', '').strip()
@@ -97,12 +97,12 @@ def run_precomputation():
             except Exception:
                 continue
 
-    print(f"🧠 Encoding {len(text_corpus_batch)} elite profiles...")
+    print(f"Encoding {len(text_corpus_batch)} elite profiles...")
     embeddings = model.encode(text_corpus_batch, convert_to_tensor=True, show_progress_bar=True)
     
     with open(brain_out_path, 'wb') as pkl_file:
         pickle.dump({"records": candidate_records, "embeddings": embeddings}, pkl_file)
-    print("✨ BRAIN FILE UPDATED SUCCESSFULLY WITH PERFECT BOUNDS!")
+    print("BRAIN FILE UPDATED SUCCESSFULLY WITH PERFECT BOUNDS!")
 
 if __name__ == "__main__":
     run_precomputation()

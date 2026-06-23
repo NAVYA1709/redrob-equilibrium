@@ -15,9 +15,9 @@ def calculate_custom_signals_score(signals):
         return 50.0
     
     # 1. GitHub Vitality Component (Max 25 Pts)
-    # Scaled natively out of 10.0
-    gh_raw = max(0.0, min(10.0, float(signals.get("github_activity_score", 5.0))))
-    gh_component = (gh_raw / 10.0) * 25.0
+    # Scaled natively out of 100.0
+    gh_raw = max(0.0, min(100.0, float(signals.get("github_activity_score", 5.0))))
+    gh_component = (gh_raw / 100.0) * 25.0
     
     # 2. Interview Reliability Component (Max 35 Pts)
     # Already a percentage decimal (0.0 to 1.0)

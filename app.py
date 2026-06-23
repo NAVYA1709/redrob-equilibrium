@@ -370,7 +370,7 @@ else:
                     # Display subscore indicators
                     sb1, sb2, sb3, sb4 = st.columns(4)
                     with sb1:
-                        st.metric(label="GitHub Activity Score", value=f"{row['Github Activity']}/10")
+                        st.metric(label="GitHub Activity Score", value=f"{row['Github Activity']}/100")
                     with sb2:
                         st.metric(label="Interview Completion", value=f"{int(row['Interview Completion'] * 100)}%")
                     with sb3:

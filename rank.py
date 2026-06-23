@@ -258,8 +258,8 @@ def main():
         semantic_score = round(float(cosine_scores[idx]) * 100, 2)
         signals_score = candidate["signals_score"]
         
-        # Calculate hybrid score (70% Semantic + 30% Platform signals)
-        hybrid_score = (semantic_score * 0.70) + (signals_score * 0.30)
+        # Calculate hybrid score (75% Semantic + 25% Platform signals)
+        hybrid_score = (semantic_score * 0.75) + (signals_score * 0.25)
         
         # Heuristics adjustment points
         heuristics = 0.0
